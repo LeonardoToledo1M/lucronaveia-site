@@ -6,74 +6,474 @@
   <title>Lucro Na Veia</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0f172a;
+      background: #081225;
       color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
+      line-height: 1.4;
+    }
+
+    .section {
+      width: 100%;
+      padding: 70px 20px;
     }
 
     .container {
-      max-width: 600px;
-      padding: 20px;
+      width: 100%;
+      max-width: 1150px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(180deg, #081225 0%, #0b1730 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #22c55e;
+      margin-bottom: 18px;
     }
 
     h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
+      font-size: 64px;
+      line-height: 1.05;
+      margin: 0 0 24px 0;
     }
 
-    p {
-      font-size: 18px;
-      color: #cbd5f5;
-      margin-bottom: 30px;
+    .hero p {
+      font-size: 24px;
+      color: #d6def0;
+      margin: 0 0 18px 0;
+      max-width: 760px;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 15px 25px;
-      background: #22c55e;
-      color: #000;
+    .hero-highlight {
+      font-size: 22px;
       font-weight: bold;
+      color: #22c55e;
+      margin-top: 24px;
+      margin-bottom: 28px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 30px;
+      margin-bottom: 24px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-block;
+      padding: 18px 28px;
+      border-radius: 10px;
       text-decoration: none;
-      border-radius: 8px;
+      font-weight: bold;
+      font-size: 18px;
       transition: 0.2s;
     }
 
-    .btn:hover {
+    .btn-primary {
+      background: #22c55e;
+      color: #000000;
+    }
+
+    .btn-primary:hover {
       background: #16a34a;
     }
 
-    .link {
-      display: block;
+    .btn-secondary {
+      background: transparent;
+      color: #ffffff;
+      border: 2px solid #334155;
+    }
+
+    .btn-secondary:hover {
+      border-color: #ffffff;
+    }
+
+    .hero-note {
+      font-size: 15px;
+      color: #94a3b8;
+      margin-top: 10px;
+    }
+
+    .price-card {
+      background: #101d37;
+      border: 1px solid #243552;
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    }
+
+    .price-card h3 {
+      margin: 0 0 8px 0;
+      font-size: 22px;
+    }
+
+    .price-big {
+      font-size: 56px;
+      font-weight: bold;
+      color: #22c55e;
+      line-height: 1;
+      margin: 16px 0 10px 0;
+    }
+
+    .price-sub {
+      font-size: 17px;
+      color: #cbd5e1;
+      margin-bottom: 22px;
+    }
+
+    .price-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 28px 0;
+    }
+
+    .price-list li {
+      font-size: 18px;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 46px;
+      margin: 0 0 20px 0;
+      line-height: 1.1;
+    }
+
+    .section-subtitle {
+      font-size: 22px;
+      color: #d6def0;
+      max-width: 860px;
+      margin: 0 0 36px 0;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 36px;
+    }
+
+    .card {
+      background: #101d37;
+      border: 1px solid #243552;
+      border-radius: 16px;
+      padding: 26px;
+    }
+
+    .card h3 {
+      margin: 0 0 14px 0;
+      font-size: 24px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #d6def0;
+      font-size: 18px;
+    }
+
+    .dark-section {
+      background: #0b1730;
+    }
+
+    .light-divider {
+      border-top: 1px solid #1e293b;
+    }
+
+    .problem-list,
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 28px 0 0 0;
+    }
+
+    .problem-list li,
+    .feature-list li {
+      font-size: 21px;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .impact-box {
+      background: #101d37;
+      border-left: 6px solid #22c55e;
+      border-radius: 10px;
+      padding: 24px;
+      margin-top: 26px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .cta-block {
+      background: linear-gradient(180deg, #0f1e39 0%, #0b1730 100%);
+      border: 1px solid #243552;
+      border-radius: 20px;
+      padding: 40px 28px;
+    }
+
+    .cta-block .price-big {
+      margin-top: 10px;
+    }
+
+    .footer-note {
       margin-top: 20px;
       color: #94a3b8;
-      font-size: 14px;
+      font-size: 15px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 46px;
+      }
+
+      .hero p,
+      .section-subtitle {
+        font-size: 20px;
+      }
+
+      .section-title {
+        font-size: 36px;
+      }
+
+      .price-big {
+        font-size: 44px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 56px 18px;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+
+      .hero p,
+      .section-subtitle,
+      .card p,
+      .problem-list li,
+      .feature-list li {
+        font-size: 18px;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        text-align: center;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .price-big {
+        font-size: 40px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Você sabe quanto realmente sobra no seu negócio?</h1>
 
-    <p>
-      A maioria dos empresários acha que tem lucro.<br/>
-      Mas está perdendo dinheiro sem perceber.
-    </p>
+  <section class="section hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Motor de lucro para decisões rápidas</div>
 
-    <a class="btn" href="https://app.lucronaveia.com">
-      Começar agora
-    </a>
+        <h1>O problema não é vender. É perder.</h1>
 
-    <a class="link" href="https://app.lucronaveia.com">
-      Já tenho conta
-    </a>
-  </div>
+        <p>
+          Você vende, trabalha, gira estoque, paga conta, corre o mês inteiro...
+          e no fim nem sempre sabe quanto realmente sobrou.
+        </p>
+
+        <p>
+          O Lucro Na Veia mostra onde o seu dinheiro está vazando,
+          quais produtos realmente dão margem
+          e onde você precisa agir para ganhar mais sem vender mais.
+        </p>
+
+        <div class="hero-highlight">
+          Ganhar mais sem vender mais começa quando você para de perder no escuro.
+        </div>
+
+        <div class="buttons">
+          <a class="btn-primary" href="https://app.lucronaveia.com">
+            Assinar agora
+          </a>
+
+          <a class="btn-secondary" href="https://app.lucronaveia.com">
+            Já tenho conta
+          </a>
+        </div>
+
+        <div class="hero-note">
+          Sistema simples. Direto. Sem virar um ERP disfarçado.
+        </div>
+      </div>
+
+      <div class="price-card">
+        <h3>Plano por operação</h3>
+        <div class="price-big">R$ 199/mês</div>
+        <div class="price-sub">por loja</div>
+
+        <ul class="price-list">
+          <li>✔ Lucro real do negócio</li>
+          <li>✔ Visualização clara de perdas</li>
+          <li>✔ Onde está o ralo do dinheiro</li>
+          <li>✔ Decisão rápida sem complicação</li>
+          <li>✔ Controle simples e direto</li>
+          <li>✔ Multi-loja de verdade</li>
+        </ul>
+
+        <a class="btn-primary" href="https://app.lucronaveia.com">
+          Quero começar agora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light-divider">
+    <div class="container">
+      <h2 class="section-title">Lucro não é saldo de conta.</h2>
+      <p class="section-subtitle">
+        Se você não mede perda, desperdício, margem real e desempenho por operação,
+        você toma decisão no escuro. E decisão no escuro custa caro.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Você vende bem...</h3>
+          <p>...mas nem sempre sabe o que realmente sobra no fim do mês.</p>
+        </div>
+
+        <div class="card">
+          <h3>Seu estoque vira ralo</h3>
+          <p>Perda, erro, desperdício, falha operacional e produto ruim vão comendo sua margem.</p>
+        </div>
+
+        <div class="card">
+          <h3>Você decide no achismo</h3>
+          <p>Sem clareza, você não sabe o que insistir, o que corrigir e o que cortar.</p>
+        </div>
+      </div>
+
+      <div class="impact-box">
+        A forma mais rápida de aumentar seu lucro não é vender mais. É parar de perder.
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark-section">
+    <div class="container">
+      <h2 class="section-title">O que o Lucro Na Veia faz na prática</h2>
+      <p class="section-subtitle">
+        Você lança o básico. O sistema traduz a operação e mostra a verdade.
+      </p>
+
+      <ul class="feature-list">
+        <li>✔ mostra o lucro real do negócio</li>
+        <li>✔ revela perdas e vazamentos invisíveis</li>
+        <li>✔ ajuda a enxergar quais produtos dão dinheiro de verdade</li>
+        <li>✔ mostra onde sua margem está sendo destruída</li>
+        <li>✔ compara operações e lojas em um só lugar</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section light-divider">
+    <div class="container">
+      <h2 class="section-title">Multi-loja de verdade. Sem bagunça.</h2>
+      <p class="section-subtitle">
+        Tem quiosque, unidade, filial, operação paralela, loja em shopping, ponto de rua?
+        Aqui você centraliza tudo e compara quem performa melhor e quem está vazando dinheiro.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Veja tudo junto</h3>
+          <p>Consolide operações em um lugar só, sem planilha e sem maluquice manual.</p>
+        </div>
+
+        <div class="card">
+          <h3>Compare desempenho</h3>
+          <p>Entenda qual loja entrega resultado e qual está arrastando sua margem para baixo.</p>
+        </div>
+
+        <div class="card">
+          <h3>Tome decisão rápido</h3>
+          <p>Menos sistema. Mais clareza. Mais ação. Mais lucro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark-section">
+    <div class="container center">
+      <div class="cta-block">
+        <h2 class="section-title">Pare de perder dinheiro no escuro.</h2>
+        <p class="section-subtitle" style="margin-left:auto; margin-right:auto;">
+          Descubra quanto realmente sobra no seu negócio, enxergue seus vazamentos
+          e comece a decidir com clareza.
+        </p>
+
+        <div class="price-big">R$ 199/mês</div>
+        <div class="price-sub">por loja</div>
+
+        <div class="buttons" style="justify-content:center;">
+          <a class="btn-primary" href="https://app.lucronaveia.com">
+            Assinar agora
+          </a>
+
+          <a class="btn-secondary" href="https://app.lucronaveia.com">
+            Entrar no sistema
+          </a>
+        </div>
+
+        <div class="footer-note">
+          Se o sistema te fizer parar uma pequena parte das perdas, ele já se paga sozinho.
+        </div>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
