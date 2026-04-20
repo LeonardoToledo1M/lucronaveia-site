@@ -1,100 +1,482 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lucro Na Veia</title>
 
-<title>Lucro Na Veia</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-body {
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle at top, #081225, #02050d);
-    color: #ffffff;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at top center, rgba(34, 197, 94, 0.08) 0%, rgba(8, 18, 37, 0) 28%),
+        linear-gradient(180deg, #020817 0%, #081225 100%);
+      color: #ffffff;
+      line-height: 1.4;
+    }
 
-/* HERO */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    .site-header {
+      width: 100%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(2, 8, 23, 0.92);
+      backdrop-filter: blur(8px);
+    }
 
-    padding: 40px 20px;
-}
+    .header-inner {
+      width: 100%;
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
 
-/* LOGO */
-.logo {
-    width: 220px;
-    margin-bottom: 30px;
-}
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
 
-/* SUBTÍTULO */
-.hero p {
-    color: #00ff88;
-    font-size: 18px;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-}
+    .logo-wrap img {
+      height: 86px;
+      width: auto;
+      display: block;
+    }
 
-/* TÍTULO PRINCIPAL */
-.hero h1 {
-    font-weight: 800;
-    line-height: 1.1;
-    max-width: 900px;
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 54px;
+      margin-left: auto;
+      margin-right: 28px;
+    }
 
-    font-size: clamp(40px, 6vw, 96px);
-}
+    .main-nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+      opacity: 0.95;
+    }
 
-/* BOTÃO */
-.cta {
-    margin-top: 40px;
-}
+    .main-nav a:hover {
+      color: #22c55e;
+    }
 
-.cta a {
-    background: linear-gradient(90deg, #00ff88, #00c853);
-    color: #000;
-    padding: 16px 28px;
-    font-size: 18px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-shrink: 0;
+    }
 
-    transition: 0.2s;
-}
+    .btn-primary,
+    .btn-secondary,
+    .btn-header-login {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 14px;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
 
-.cta a:hover {
-    transform: scale(1.05);
-}
-</style>
+    .btn-primary {
+      background: #22c55e;
+      color: #000000;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background: #16a34a;
+      transform: translateY(-1px);
+    }
+
+    .btn-header-login,
+    .btn-secondary {
+      background: transparent;
+      color: #ffffff;
+      border: 2px solid rgba(34, 197, 94, 0.85);
+    }
+
+    .btn-header-login:hover,
+    .btn-secondary:hover {
+      border-color: #22c55e;
+      color: #22c55e;
+    }
+
+    .btn-header-login {
+      padding: 15px 30px;
+      font-size: 18px;
+      min-width: 128px;
+    }
+
+    .btn-header-sign {
+      padding: 16px 34px;
+      font-size: 18px;
+      min-width: 190px;
+    }
+
+    .hero {
+      width: 100%;
+      min-height: calc(100vh - 123px);
+      display: flex;
+      align-items: center;
+      padding: 64px 28px 72px;
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 1380px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(360px, 470px);
+      gap: 72px;
+      align-items: center;
+    }
+
+    .hero-left {
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: #22c55e;
+      text-transform: uppercase;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      margin-bottom: 22px;
+      text-shadow: 0 0 12px rgba(34, 197, 94, 0.18);
+    }
+
+    .hero-left h1 {
+      font-size: 78px;
+      line-height: 0.97;
+      font-weight: 800;
+      margin-bottom: 28px;
+      letter-spacing: -1.6px;
+    }
+
+    .hero-left p {
+      font-size: 24px;
+      color: #d7dfef;
+      margin-bottom: 24px;
+      max-width: 720px;
+    }
+
+    .hero-highlight {
+      font-size: 22px;
+      font-weight: 800;
+      color: #22c55e;
+      margin-top: 8px;
+      margin-bottom: 28px;
+      max-width: 760px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 14px;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-secondary {
+      min-width: 300px;
+      padding: 22px 28px;
+      font-size: 22px;
+    }
+
+    .btn-primary .arrow {
+      margin-left: 14px;
+      font-size: 32px;
+      line-height: 1;
+    }
+
+    .hero-note {
+      color: #8f99ad;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .price-card {
+      background: rgba(8, 18, 37, 0.92);
+      border: 2px solid rgba(34, 197, 94, 0.92);
+      border-radius: 26px;
+      padding: 40px 40px 36px;
+      box-shadow:
+        0 0 0 1px rgba(34, 197, 94, 0.06),
+        0 18px 48px rgba(0, 0, 0, 0.38),
+        0 0 60px rgba(34, 197, 94, 0.08);
+    }
+
+    .price-card h3 {
+      font-size: 24px;
+      font-weight: 500;
+      color: #c9d2e3;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .price-big {
+      font-size: 86px;
+      line-height: 0.95;
+      font-weight: 800;
+      color: #22c55e;
+      margin-bottom: 16px;
+      letter-spacing: -2px;
+    }
+
+    .price-sub {
+      font-size: 22px;
+      color: #d6def0;
+      margin-bottom: 30px;
+    }
+
+    .price-list {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+
+    .price-list li {
+      font-size: 21px;
+      color: #ffffff;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .price-list li::before {
+      content: "✓";
+      color: #22c55e;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: -1px;
+    }
+
+    .price-card .btn-primary {
+      width: 100%;
+      padding: 22px 24px;
+      font-size: 21px;
+    }
+
+    @media (max-width: 1180px) {
+      .header-inner {
+        flex-wrap: wrap;
+      }
+
+      .main-nav {
+        order: 3;
+        width: 100%;
+        margin: 0;
+        justify-content: center;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+
+      .hero-left {
+        max-width: 100%;
+      }
+
+      .hero-left h1 {
+        font-size: 64px;
+      }
+
+      .price-card {
+        max-width: 560px;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .logo-wrap img {
+        height: 70px;
+      }
+
+      .main-nav {
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .main-nav a {
+        font-size: 16px;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .eyebrow {
+        font-size: 20px;
+      }
+
+      .hero-left h1 {
+        font-size: 50px;
+        line-height: 1.02;
+      }
+
+      .hero-left p {
+        font-size: 20px;
+      }
+
+      .hero-highlight {
+        font-size: 19px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons .btn-primary,
+      .hero-buttons .btn-secondary,
+      .btn-header-login,
+      .btn-header-sign {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .price-big {
+        font-size: 64px;
+      }
+
+      .price-list li {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .header-inner,
+      .hero {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .hero {
+        padding-top: 42px;
+        padding-bottom: 48px;
+      }
+
+      .hero-left h1 {
+        font-size: 42px;
+      }
+
+      .hero-left p {
+        font-size: 18px;
+      }
+
+      .price-card {
+        padding: 28px 24px;
+      }
+
+      .price-big {
+        font-size: 52px;
+      }
+
+      .price-sub {
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<section class="hero">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo-wrap" href="#">
+        <img src="logo.png" alt="Lucro Na Veia">
+      </a>
 
-    <img src="logo.png" class="logo">
+      <nav class="main-nav">
+        <a href="#">Recursos</a>
+        <a href="#">Para quem é</a>
+        <a href="#">Preço</a>
+      </nav>
 
-    <p>MOTOR DE LUCRO PARA DECISÕES RÁPIDAS</p>
-
-    <h1>
-        O problema não é vender.<br>
-        É perder!
-    </h1>
-
-    <div class="cta">
-        <a href="#">COMEÇAR AGORA</a>
+      <div class="header-actions">
+        <a class="btn-header-login" href="https://app.lucronaveia.com/login">Entrar</a>
+        <a class="btn-primary btn-header-sign" href="https://app.lucronaveia.com/assinatura">Assinar agora</a>
+      </div>
     </div>
+  </header>
 
-</section>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="eyebrow">Motor de lucro para decisões rápidas</div>
+
+        <h1>O problema não é vender. É perder!</h1>
+
+        <p>
+          Você vende, trabalha, gira estoque, paga conta, corre o mês inteiro...
+          e no fim nem sempre sabe quanto realmente sobrou.
+        </p>
+
+        <p>
+          O Lucro Na Veia mostra onde o seu dinheiro está vazando,
+          quais produtos realmente dão margem e onde você precisa
+          agir para ganhar mais sem vender mais.
+        </p>
+
+        <div class="hero-highlight">
+          Ganhar mais sem vender mais começa quando você para de perder no escuro.
+        </div>
+
+        <div class="hero-buttons">
+          <a class="btn-primary" href="https://app.lucronaveia.com/assinatura">
+            Assinar agora <span class="arrow">→</span>
+          </a>
+
+          <a class="btn-secondary" href="https://app.lucronaveia.com/login">
+            Já tenho conta
+          </a>
+        </div>
+
+        <div class="hero-note">
+          Sistema simples. Direto. Sem virar um ERP disfarçado.
+        </div>
+      </div>
+
+      <div class="price-card">
+        <h3>Plano por operação</h3>
+        <div class="price-big">R$ 199/mês</div>
+        <div class="price-sub">por loja</div>
+
+        <ul class="price-list">
+          <li>Lucro real do negócio</li>
+          <li>Visualização clara de perdas</li>
+          <li>Onde está o ralo do dinheiro</li>
+          <li>Decisão rápida sem complicação</li>
+          <li>Controle simples e direto</li>
+          <li>Multi-loja de verdade</li>
+        </ul>
+
+        <a class="btn-primary" href="https://app.lucronaveia.com/assinatura">
+          Quero parar de perder agora
+        </a>
+      </div>
+    </div>
+  </section>
 
 </body>
 </html>
