@@ -316,14 +316,17 @@
 
     @media (max-width: 820px) {
       .logo-wrap {
-        height: 56px;
-      }
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
 
-      .logo-wrap img {
-        height: 56px;
-        transform: scale(1.15);
-      }
-
+.logo-wrap img {
+  height: 110px;
+  width: auto;
+  display: block;
+}
       .main-nav {
         gap: 24px;
         flex-wrap: wrap;
